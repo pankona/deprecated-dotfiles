@@ -64,7 +64,7 @@ if has('vim_starting')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleFetch 'shougo/neobundle.vim'
 
 NeoBundle 'kannokanno/previm'
 NeoBundle 'vim-scripts/gtags.vim'
@@ -83,6 +83,8 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'mhinz/vim-startify'
 NeoBundle 'justmao945/vim-clang'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'papanikge/vim-voogle'
+NeoBundle 'haya14busa/incsearch.vim'
 
 call neobundle#end()
 
@@ -104,6 +106,7 @@ filetype plugin on
 
 " previm configuration
 let g:previm_open_cmd = 'firefox'
+autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " neocomplete
 let g:neocomplete#enable_at_startup  = 1
@@ -133,3 +136,19 @@ let g:neocomplete#force_omni_input_patterns.objc =
 let g:neocomplete#force_omni_input_patterns.objcpp =
       \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
+" vim-voogle
+let g:voogle_browser = 'firefox'
+let g:search_engine  = 'https://www.google.co.jp/search?q='
+
+" incsearch.vim
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+"map n  <Plug>(incsearch-nohl-n)
+"map N  <Plug>(incsearch-nohl-N)
+"map *  <Plug>(incsearch-nohl-*)
+"map #  <Plug>(incsearch-nohl-#)
+"map g* <Plug>(incsearch-nohl-g*)
+"map g# <Plug>(incsearch-nohl-g#)
+"let g:incsearch#auto_nohlsearch = 1
+"
