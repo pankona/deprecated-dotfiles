@@ -77,7 +77,9 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundleLazy 'vim-jp/cpp-vim', {
             \ 'autoload' : {'filetypes' : 'cpp'}
             \ }
-"NeoBundle 'scrooloose/syntastic'
+NeoBundleLazy 'scrooloose/syntastic', {
+            \ 'autoload' : { 'filetypes' : 'go'  }
+            \ }
 NeoBundle 'vim-scripts/TwitVim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'mhinz/vim-startify'
@@ -151,4 +153,11 @@ map g/ <Plug>(incsearch-stay)
 "map g* <Plug>(incsearch-nohl-g*)
 "map g# <Plug>(incsearch-nohl-g#)
 "let g:incsearch#auto_nohlsearch = 1
-"
+
+" vim-go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods   = 1
+let g:go_highlight_structs   = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:neocomplete#force_omni_input_patterns.go = '\h\w\.\w*'
