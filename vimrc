@@ -165,6 +165,6 @@ autocmd FileType go :match goErr /\<err\>/
 " open-browser
 filetype on
 let g:netrw_nogx = 1
-nnoremap gx <Plug>(openbrowser-smart-search)
-vnoremap gx <Plug>(openbrowser-smart-search)
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
