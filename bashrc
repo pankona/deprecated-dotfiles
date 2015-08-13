@@ -55,3 +55,5 @@ export GOPATH="/home/aka/work/gocode"
 export PATH="$PATH:$GOPATH/bin"
 
 export PATH="/home/aka/bin:$PATH"
+
+export PATH="/home/aka/work/go_appengine:$PATH"
