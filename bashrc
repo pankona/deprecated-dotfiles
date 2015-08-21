@@ -7,6 +7,7 @@ alias vi='vim'
 alias ls='ls --color'
 alias grep='grep --color=auto'
 alias make='colormake'
+alias xmind='XMind'
 
 HISTCONTROL=erasedups
 HISTIGNORE="cd*:history*:ls*:which*:exit"
@@ -49,6 +50,7 @@ source ~/bin/git-completion.bash
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+export GOROOT_BOOTSTRAP="/home/aka/work/go1.4"
 export GOROOT="/home/aka/work/go"
 export PATH="$PATH:$GOROOT/bin"
 export GOPATH="/home/aka/work/gocode"
