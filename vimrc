@@ -25,6 +25,7 @@ set t_Co=256
 set scrolloff=7
 set ambiwidth=double
 
+set background=dark
 colorscheme hybrid
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
@@ -55,8 +56,16 @@ vnoremap <C-j> <ESC>
 inoremap <C-k> <CR>
 cnoremap <C-k> <CR>
 
+" ; -> :
+" : -> ;
+nnoremap : ;
+nnoremap ; :
+
 " neobundle
 if has('vim_starting')
+  if &compatible
+    set nocompatible
+  endif
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
@@ -75,7 +84,7 @@ NeoBundleLazy 'vim-jp/cpp-vim', {
             \ 'autoload' : {'filetypes' : 'cpp'}
             \ }
 NeoBundleLazy 'scrooloose/syntastic', {
-            \ 'autoload' : { 'filetypes' : 'go'  }
+            \ 'autoload' : {'filetypes' : 'go'}
             \ }
 NeoBundle 'vim-scripts/TwitVim'
 NeoBundle 'tyru/open-browser.vim'
@@ -84,9 +93,12 @@ NeoBundle 'justmao945/vim-clang'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'papanikge/vim-voogle'
 NeoBundle 'haya14busa/incsearch.vim'
-NeoBundle "aklt/plantuml-syntax"
+NeoBundle 'aklt/plantuml-syntax'
+"NeoBundle 'Rip-Rip/clang_complete'
 
 call neobundle#end()
+
+filetype plugin indent on
 
 NeoBundleCheck
 
@@ -122,6 +134,7 @@ let g:clang_auto = 0
 let g:clang_c_completeopt = 'menuone,preview'
 let g:clang_cpp_completeopt = 'menuone,preview'
 let g:clang_cpp_options = '-I/usr/include/c++/5.2.0 -I/usr/include/c++/5.2.0/x86_64-unknown-linux-gnu'
+"let g:clang_compilation_database = './build'
 
 " neocomplete
 if !exists('g:neocomplete#force_omni_input_patterns')
@@ -158,9 +171,14 @@ let g:go_highlight_methods   = 1
 let g:go_highlight_structs   = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_autosave = 1
 let g:neocomplete#force_omni_input_patterns.go = '\h\w\.\w*'
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
+" golang configuration
+let g:syntastic_go_checkers = ['go', 'golint', 'govet'] 
 
 " open-browser
 filetype on
