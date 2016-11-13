@@ -1,0 +1,133 @@
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=/home/pankona/.dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+call dein#begin('/home/pankona/.dein')
+
+" Let dein manage dein
+" Required:
+call dein#add('Shougo/dein.vim')
+
+" Add or remove your plugins here:
+"call dein#add('Shougo/neosnippet.vim')
+"call dein#add('Shougo/neosnippet-snippets')
+
+" You can specify revision/branch/tag.
+"call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+
+call dein#add('thinca/vim-quickrun')
+call dein#add('w0ng/vim-hybrid')
+call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/vimproc.vim')
+call dein#add('Shougo/vimfiler.vim')
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('fatih/vim-go')
+call dein#add('scrooloose/syntastic')
+
+" Required:
+call dein#end()
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
+
+
+set runtimepath+=/Users/aka/.dein/repos/github.com/w0ng/vim-hybrid
+
+set autoindent
+set backspace=indent,eol,start
+set expandtab
+set fileencodings=ucs-bom,utf-8,default,latin1
+set helplang=ja
+set hlsearch
+set ignorecase
+set incsearch
+set langmenu=none
+set modelines=0
+set shiftwidth=4
+set smartcase
+set smartindent
+set softtabstop=4
+set suffixes=.bak,~,.o,.h,.info,.swp,.obj,.class
+set tabstop=4
+set termencoding=utf-8
+set window=0
+syntax enable
+set background=dark
+set number
+set t_Co=256
+set scrolloff=7
+set ambiwidth=double
+" vim: set ft=vim :
+
+nnoremap : ;
+nnoremap ; :
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
+colorscheme hybrid
+
+" tab creation and switch
+nnoremap <silent> ss :tabnew<CR>
+nnoremap <silent> sl :tabnext<CR>
+nnoremap <silent> sh :tabprevious<CR>
+
+" use neocomplete
+" input patterns
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+" neocomplete
+let g:neocomplete#enable_at_startup     = 1
+let g:neocomplete#enable_smart_case     = 1
+let g:neocomplete#enable_ignore_case    = 1
+let g:neocomplete#enable_camel_case     = 1
+let g:neocomplete#use_vimproc           = 1
+let g:neocomplete#enable_refresh_always = 1
+
+" VimFiler
+let g:vimfiler_as_default_explorer = 1
+nnoremap <silent> sd :VimFilerBufferDir -create -simple -no-quit -winwidth=30<CR>
+
+" golang configuration
+"filetype off
+"filetype plugin indent off
+"set runtimepath+=$GOROOT/misc/vim
+"filetype plugin indent on
+"syntax on
+"let g:gocomplete#system_function = 'vimproc#system2'
+"let g:go_fmt_command = "goimports"
+"exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+"exe "set rtp+=".globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+"let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+"let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods   = 1
+let g:go_highlight_structs   = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
+let g:go_fmt_fail_silently = 1
+let g:go_fmt_autosave = 1
+let g:neocomplete#force_omni_input_patterns.go = '\h\w\.\w*'
+autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+autocmd FileType go :match goErr /\<err\>/
+" golang configuration
+let g:syntastic_go_checkers = ['go', 'golint', 'govet'] 
+
+
+
