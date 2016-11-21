@@ -77,6 +77,8 @@ nnoremap ; :
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
 colorscheme hybrid
+" for background transparency
+hi Normal ctermbg=none
 
 " tab creation and switch
 nnoremap <silent> ss :tabnew<CR>
