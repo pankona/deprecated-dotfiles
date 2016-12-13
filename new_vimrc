@@ -28,6 +28,8 @@ call dein#add('Shougo/vimfiler.vim')
 call dein#add('Shougo/neocomplete.vim')
 call dein#add('fatih/vim-go')
 call dein#add('scrooloose/syntastic')
+call dein#add('mxw/vim-jsx')
+call dein#add('elixir-lang/vim-elixir')
 
 " Required:
 call dein#end()
@@ -130,6 +132,4 @@ autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 " golang configuration
 let g:syntastic_go_checkers = ['go', 'golint', 'govet'] 
-
-
 
