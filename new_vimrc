@@ -26,10 +26,18 @@ call dein#add('Shougo/unite.vim')
 call dein#add('Shougo/vimproc.vim')
 call dein#add('Shougo/vimfiler.vim')
 call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/neoinclude.vim')
 call dein#add('fatih/vim-go')
-call dein#add('scrooloose/syntastic')
+"call dein#add('scrooloose/syntastic')
 call dein#add('mxw/vim-jsx')
 call dein#add('elixir-lang/vim-elixir')
+"call dein#add('pmsorhaindo/syntastic-local-eslint.vim')
+call dein#add('neomake/neomake')
+call dein#add('benjie/neomake-local-eslint.vim')
+"call dein#add('bling/vim-bufferline')
+call dein#add('fholgado/minibufexpl.vim')
+call dein#add('justmao945/vim-clang')
+"call dein#add('Rip-Rip/clang_complete')
 
 " Required:
 call dein#end()
@@ -44,7 +52,6 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
-
 
 set runtimepath+=/Users/aka/.dein/repos/github.com/w0ng/vim-hybrid
 
@@ -84,8 +91,16 @@ hi Normal ctermbg=none
 
 " tab creation and switch
 nnoremap <silent> ss :tabnew<CR>
-nnoremap <silent> sl :tabnext<CR>
-nnoremap <silent> sh :tabprevious<CR>
+"nnoremap <silent> sl :tabnext<CR>
+"nnoremap <silent> sh :tabprevious<CR>
+
+let g:miniBufExplMapWindowNavVim    = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBuffs = 1
+nnoremap <silent> sl :bnext<CR>
+nnoremap <silent> sh :bprevious<CR>
+"nnoremap <C-c> :bp\|bd #<CR>
+nnoremap <expr> <silent> <C-c> len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1 ? ':bd<CR>' : ':bp<CR>:bd #<CR>'
 
 " use neocomplete
 " input patterns
@@ -132,4 +147,37 @@ autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
 " golang configuration
 let g:syntastic_go_checkers = ['go', 'golint', 'govet'] 
+
+" javascript
+autocmd! BufWritePost * Neomake
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_error_sign   = {'text': '>>', 'texthl': 'Error'}
+let g:neomake_warning_sign = {'text': '>>', 'texthl': 'Todo'}
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+
+" vim-clang (copied from help)
+
+" disable auto completion for vim-clang
+let g:clang_auto = 1
+" default 'longest' can not work with neocomplete
+let g:clang_c_completeopt   = 'menuone,preview'
+let g:clang_cpp_completeopt = 'menuone,preview'
+"let g:clang_debug = 2
+let g:clang_cpp_options     = '-I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-pc-linux-gnu'
+
+
+
+"Neomake
+autocmd! BufWritePost * Neomake
+let g:neomake_cpp_enabled_makers = ['clang']
+let g:neomake_cpp_clang_maker    = {'exe' : 'clang' }
+"let g:neomake_cpp_clang_args    = ['-std=c++11'] " this cannot be enabled
+"let g:c_syntax_for_h  = 1
+"let g:ch_syntax_for_h = 1
+
+"augroup project
+"    autocmd!
+"    autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
+"augroup END
+
 
