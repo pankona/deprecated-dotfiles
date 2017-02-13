@@ -28,7 +28,7 @@ call dein#add('Shougo/vimfiler.vim')
 call dein#add('Shougo/neocomplete.vim')
 call dein#add('Shougo/neoinclude.vim')
 call dein#add('fatih/vim-go')
-"call dein#add('scrooloose/syntastic')
+call dein#add('scrooloose/syntastic', {'on_ft':'go'})
 call dein#add('mxw/vim-jsx')
 call dein#add('elixir-lang/vim-elixir')
 "call dein#add('pmsorhaindo/syntastic-local-eslint.vim')
@@ -38,7 +38,7 @@ call dein#add('benjie/neomake-local-eslint.vim')
 call dein#add('fholgado/minibufexpl.vim')
 call dein#add('justmao945/vim-clang')
 "call dein#add('Rip-Rip/clang_complete')
-call dein#add('haya14busa/vim-gofmt')
+"call dein#add('haya14busa/vim-gofmt')
 
 " Required:
 call dein#end()
@@ -134,7 +134,6 @@ nnoremap <silent> sd :VimFilerBufferDir -create -simple -no-quit -winwidth=30<CR
 "let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 "let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 
-
 let g:go_highlight_functions = 1
 let g:go_highlight_methods   = 1
 let g:go_highlight_structs   = 1
@@ -164,26 +163,18 @@ let g:neomake_warning_sign = {'text': '>>', 'texthl': 'Todo'}
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 
 " vim-clang (copied from help)
-
 " disable auto completion for vim-clang
 let g:clang_auto = 1
 " default 'longest' can not work with neocomplete
 let g:clang_c_completeopt   = 'menuone,preview'
 let g:clang_cpp_completeopt = 'menuone,preview'
-"let g:clang_debug = 2
+" let g:clang_debug = 2
 let g:clang_cpp_options     = '-I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1/x86_64-pc-linux-gnu'
 
-"Neomake
+" cpp
 autocmd! BufWritePost *.cpp Neomake
 let g:neomake_cpp_enabled_makers = ['clang']
 let g:neomake_cpp_clang_maker    = {'exe' : 'clang' }
 "let g:neomake_cpp_clang_args    = ['-std=c++11'] " this cannot be enabled
 "let g:c_syntax_for_h  = 1
 "let g:ch_syntax_for_h = 1
-
-"augroup project
-"    autocmd!
-"    autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
-"augroup END
-
-
