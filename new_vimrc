@@ -28,7 +28,7 @@ call dein#add('Shougo/vimfiler.vim')
 call dein#add('Shougo/neocomplete.vim')
 call dein#add('Shougo/neoinclude.vim')
 call dein#add('fatih/vim-go')
-call dein#add('scrooloose/syntastic', {'on_ft':'go'})
+"call dein#add('scrooloose/syntastic', {'on_ft':'go'})
 call dein#add('mxw/vim-jsx')
 call dein#add('elixir-lang/vim-elixir')
 "call dein#add('pmsorhaindo/syntastic-local-eslint.vim')
@@ -134,26 +134,39 @@ nnoremap <silent> sd :VimFilerBufferDir -create -simple -no-quit -winwidth=30<CR
 "let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 "let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 
-let g:go_highlight_functions = 1
-let g:go_highlight_methods   = 1
-let g:go_highlight_structs   = 1
-let g:go_highlight_operators = 1
+let g:go_highlight_functions         = 1
+let g:go_highlight_methods           = 1
+let g:go_highlight_structs           = 1
+let g:go_highlight_operators         = 1
 let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
-let g:go_fmt_fail_silently = 1
-let g:go_fmt_autosave = 1
+let g:go_fmt_command                 = "goimports"
+let g:go_fmt_fail_silently           = 1
+let g:go_fmt_autosave                = 1
+let g:go_metalinter_autosave         = 1
+let g:go_metalinter_enabled          = ['vet', 'golint', 'errcheck', 'gosimple']
+let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck', 'gosimple']
 let g:neocomplete#force_omni_input_patterns.go = '\h\w\.\w*'
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
-" golang configuration
-let g:syntastic_go_checkers = ['go', 'golint', 'govet'] 
+autocmd! BufWritePost *.go GoBuild!
 
-"let g:gofmt_formatters = [
-"\   { 'cmd': 'gofmt', 'args': ['-s', '-w'] },
-"\   { 'cmd': 'goimports', 'args': ['-w'] },
-"\   { 'cmd': 'gotypeconv', 'args': ['-w'] },
-"\ ]
-"autocmd! BufWritePost *.go Fmt
+"function Foo()
+"    GoBuild
+"endfunction
+
+" golang configuration
+"let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'gometalinter'] 
+"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+"set makeprg=shellcheck\ %
+"autocmd! BufWritePost *.go Neomake!
+"let s:goargs = go#package#ImportPath(expand('%:p:h'))
+"let g:neomake_go_errcheck_maker = {
+"    \ 'args': ['-abspath', s:goargs],
+"    \ 'append_file': 0,
+"    \ 'errorformat': '%f:%l:%c:\ %m, %f:%l:%c\ %#%m',
+"    \ }
+"let g:neomake_go_enabled_makers = ['golint', 'govet', 'errcheck']
+"autocmd! BufWritePost *.go GoMetaLinter
 
 " javascript
 autocmd! BufWritePost *.js,*.jsx Neomake
@@ -174,7 +187,7 @@ let g:clang_cpp_options     = '-I/usr/include/c++/6.3.1 -I/usr/include/c++/6.3.1
 " cpp
 autocmd! BufWritePost *.cpp Neomake
 let g:neomake_cpp_enabled_makers = ['clang']
-let g:neomake_cpp_clang_maker    = {'exe' : 'clang' }
+let g:neomake_cpp_clang_maker    = {'exe' : 'clang'}
 "let g:neomake_cpp_clang_args    = ['-std=c++11'] " this cannot be enabled
 "let g:c_syntax_for_h  = 1
 "let g:ch_syntax_for_h = 1

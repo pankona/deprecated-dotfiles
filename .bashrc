@@ -16,6 +16,7 @@ alias vi='vim'
 alias ls='ls --color=auto'
 alias python='python2.7'
 alias acroread='sudo unshare -n sudo -u ${USER} ACRO_ALLOW_SUDO=1 acroread'
+alias ifconfig-watch='watch -n 1 "ifconfig"'
 
 PS1="[\u \w]\$ "
 
@@ -29,6 +30,12 @@ function android-emulator() {
 
 function netctl-switch() {
     sudo netctl-auto switch-to $(netctl-auto list | peco)
+}
+
+function zulip() {
+    cd /home/pankona/work/zulip-client
+    npm run start &
+    cd -
 }
 
 alias remote-desktop='rdesktop Y39-31633 -u TOK\Yosuke.Akatsuka -g 1280x800'
