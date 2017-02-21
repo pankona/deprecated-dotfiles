@@ -38,6 +38,14 @@ function zulip() {
     cd -
 }
 
+function hibernate() {
+    sudo pm-hibernate
+}
+
+function kkzm-watch() {
+    watch -n 1 'kkzm'
+}
+
 alias remote-desktop='rdesktop Y39-31633 -u TOK\Yosuke.Akatsuka -g 1280x800'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
