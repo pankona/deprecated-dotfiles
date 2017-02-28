@@ -37,7 +37,6 @@ call dein#add('benjie/neomake-local-eslint.vim')
 "call dein#add('bling/vim-bufferline')
 call dein#add('fholgado/minibufexpl.vim')
 call dein#add('justmao945/vim-clang')
-"call dein#add('Rip-Rip/clang_complete')
 "call dein#add('haya14busa/vim-gofmt')
 
 " Required:
@@ -148,7 +147,17 @@ let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck', 'gosimple']
 let g:neocomplete#force_omni_input_patterns.go = '\h\w\.\w*'
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
-autocmd! BufWritePost *.go GoBuild!
+"autocmd! BufWritePost *.go GoBuild!
+"autocmd! BufWritePre *.go GoBuild!
+autocmd! BufWritePost *.go Neomake
+let g:neomake_go_enabled_makers = ['go']
+let g:neomake_error_sign   = {'text': '>>', 'texthl': 'Error'}
+let g:neomake_warning_sign = {'text': '>>', 'texthl': 'Todo'}
+let g:go_list_height = 5
+au FileType qf call AdjustWindowHeight(10, 10)
+function! AdjustWindowHeight(minheight, maxheight)
+  exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
+endfunction
 
 "function Foo()
 "    GoBuild
