@@ -18,7 +18,7 @@ alias python='python2.7'
 alias acroread='sudo unshare -n sudo -u ${USER} ACRO_ALLOW_SUDO=1 acroread'
 alias ifconfig-watch='watch -n 1 "ifconfig"'
 alias mymine='REDMINE_URL=https://acsmine.tok.access-company.com/redmine/ REDMINE_API_KEY=eb45b9fa1814812c75cf0c84b4dcb0f8e2807853 mymine'
-alias zzz='kkzm start "[] 雑談"'
+alias zzz='kkzm start "[] 雑談" &> /dev/null; echo "bash: zzz: command not found"'
 
 PS1="[\u \w]\$ "
 
