@@ -13,13 +13,6 @@ call dein#begin('/home/pankona/.dein')
 " Required:
 call dein#add('Shougo/dein.vim')
 
-" Add or remove your plugins here:
-"call dein#add('Shougo/neosnippet.vim')
-"call dein#add('Shougo/neosnippet-snippets')
-
-" You can specify revision/branch/tag.
-"call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
 call dein#add('thinca/vim-quickrun')
 call dein#add('w0ng/vim-hybrid')
 call dein#add('Shougo/unite.vim')
@@ -31,13 +24,10 @@ call dein#add('fatih/vim-go')
 "call dein#add('scrooloose/syntastic', {'on_ft':'go'})
 call dein#add('mxw/vim-jsx')
 call dein#add('elixir-lang/vim-elixir')
-"call dein#add('pmsorhaindo/syntastic-local-eslint.vim')
 call dein#add('neomake/neomake')
 call dein#add('benjie/neomake-local-eslint.vim')
-"call dein#add('bling/vim-bufferline')
 call dein#add('fholgado/minibufexpl.vim')
 call dein#add('justmao945/vim-clang')
-"call dein#add('haya14busa/vim-gofmt')
 
 " Required:
 call dein#end()
@@ -121,18 +111,6 @@ let g:vimfiler_as_default_explorer = 1
 nnoremap <silent> sd :VimFilerBufferDir -create -simple -no-quit -winwidth=30<CR>
 
 " golang configuration
-"filetype off
-"filetype plugin indent off
-"set runtimepath+=$GOROOT/misc/vim
-"filetype plugin indent on
-"syntax on
-"let g:gocomplete#system_function = 'vimproc#system2'
-"let g:go_fmt_command = "goimports"
-"exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-"exe "set rtp+=".globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
-"let g:syntastic_go_checkers = ['go', 'golint', 'govet']
-"let g:syntastic_go_checkers = ['go', 'golint', 'govet']
-
 let g:go_highlight_functions         = 1
 let g:go_highlight_methods           = 1
 let g:go_highlight_structs           = 1
@@ -147,8 +125,6 @@ let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck', 'gosimple']
 let g:neocomplete#force_omni_input_patterns.go = '\h\w\.\w*'
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
-"autocmd! BufWritePost *.go GoBuild!
-"autocmd! BufWritePre *.go GoBuild!
 autocmd! BufWritePost *.go Neomake
 let g:neomake_go_enabled_makers = ['go']
 let g:neomake_error_sign   = {'text': '>>', 'texthl': 'Error'}
@@ -158,24 +134,6 @@ au FileType qf call AdjustWindowHeight(10, 10)
 function! AdjustWindowHeight(minheight, maxheight)
   exe max([min([line("$"), a:maxheight]), a:minheight]) . "wincmd _"
 endfunction
-
-"function Foo()
-"    GoBuild
-"endfunction
-
-" golang configuration
-"let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'gometalinter'] 
-"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-"set makeprg=shellcheck\ %
-"autocmd! BufWritePost *.go Neomake!
-"let s:goargs = go#package#ImportPath(expand('%:p:h'))
-"let g:neomake_go_errcheck_maker = {
-"    \ 'args': ['-abspath', s:goargs],
-"    \ 'append_file': 0,
-"    \ 'errorformat': '%f:%l:%c:\ %m, %f:%l:%c\ %#%m',
-"    \ }
-"let g:neomake_go_enabled_makers = ['golint', 'govet', 'errcheck']
-"autocmd! BufWritePost *.go GoMetaLinter
 
 " javascript
 autocmd! BufWritePost *.js,*.jsx Neomake
@@ -198,5 +156,3 @@ autocmd! BufWritePost *.cpp Neomake
 let g:neomake_cpp_enabled_makers = ['clang']
 let g:neomake_cpp_clang_maker    = {'exe' : 'clang'}
 "let g:neomake_cpp_clang_args    = ['-std=c++11'] " this cannot be enabled
-"let g:c_syntax_for_h  = 1
-"let g:ch_syntax_for_h = 1
