@@ -18,9 +18,29 @@ alias python='python2.7'
 alias acroread='sudo unshare -n sudo -u ${USER} ACRO_ALLOW_SUDO=1 acroread'
 alias ifconfig-watch='watch -n 1 "ifconfig"'
 alias mymine='REDMINE_URL=https://acsmine.tok.access-company.com/redmine/ REDMINE_API_KEY=eb45b9fa1814812c75cf0c84b4dcb0f8e2807853 mymine'
+alias qk='kkzm start 休憩'
 alias zzz='kkzm start "[] 雑談" &> /dev/null; echo "bash: zzz: command not found"'
+# clipboard. usage -> echo "hoge" | oncb
+alias oncb='xclip -sel clip'
 
 PS1="[\u \w]\$ "
+
+# mount to tama
+# sudo mount -t cifs -o user=yosuke.akatsuka //tama.tok.access-company.com/public/ccapp_getUserMediaTest ./samba/
+
+# mount to pio shared directory
+# sudo mount -t cifs -o user=yosuke.akatsuka //Tok.access-company.com/Tokyo/BU/software/data/prj/29-0174-1\ 【ITA】パイオニア向けNFLC2ndユースケース対応　カスタマイズ＆サポート ./samba/
+
+function restart-adb-server {
+    sudo adb kill-server
+    sudo adb start-server
+}
+
+function seciosspass() {
+    cd /home/pankona/bin/SeciossPass
+    java -jar SeciossPass.jar &
+    cd -
+}
 
 function android-emulator() {
     if [ -z $1 ]; then
@@ -48,6 +68,10 @@ function kkzm-watch() {
     watch -n 1 'kkzm | tail -n 15'
 }
 
+function chq() {
+    cd $(ghq list -p | peco --query "$LBUFFER")
+}
+
 alias remote-desktop='rdesktop Y39-31633 -u TOK\Yosuke.Akatsuka -g 1280x800'
 
 export PATH="$HOME/.rbenv/bin:$PATH"
@@ -65,6 +89,7 @@ export PATH=$PATH:$HOME/android-ndk-r10e
 export NDK_ROOT=$HOME/android-ndk-r10e
 export PATH=$PATH:$NDK_ROOT/toolchains/arm-linux-androideabi-4.8/prebuilt/linux-x86_64/bin/
 
+#export PATH=$PATH:/opt/toolchains/android-ndk-r9d-standalone-19/bin
 export ANDROID_SDK_ROOT=$HOME/android-sdk
 export PATH=$ANDROID_SDK_ROOT:$PATH
 export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH

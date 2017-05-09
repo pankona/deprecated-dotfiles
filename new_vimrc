@@ -28,6 +28,7 @@ call dein#add('neomake/neomake')
 call dein#add('benjie/neomake-local-eslint.vim')
 call dein#add('fholgado/minibufexpl.vim')
 call dein#add('justmao945/vim-clang')
+call dein#add('nelstrom/vim-visual-star-search')
 
 " Required:
 call dein#end()
@@ -45,6 +46,8 @@ endif
 
 set runtimepath+=/Users/aka/.dein/repos/github.com/w0ng/vim-hybrid
 
+set list
+set listchars=tab:»-
 set autoindent
 set backspace=indent,eol,start
 set expandtab
@@ -125,6 +128,7 @@ let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck', 'gosimple']
 let g:neocomplete#force_omni_input_patterns.go = '\h\w\.\w*'
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
+autocmd FileType go :set nolist
 autocmd! BufWritePost *.go Neomake
 let g:neomake_go_enabled_makers = ['go']
 let g:neomake_error_sign   = {'text': '>>', 'texthl': 'Error'}
@@ -156,3 +160,11 @@ autocmd! BufWritePost *.cpp Neomake
 let g:neomake_cpp_enabled_makers = ['clang']
 let g:neomake_cpp_clang_maker    = {'exe' : 'clang'}
 "let g:neomake_cpp_clang_args    = ['-std=c++11'] " this cannot be enabled
+
+" plantuml
+function! _BuildPlantUML()
+  silent! execute "make! > /dev/null 2>&1 & | redraw!"
+endfunction
+command! BuildPlantUML call _BuildPlantUML()
+autocmd! BufWritePost *.uml :BuildPlantUML
+
